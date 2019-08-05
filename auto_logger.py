@@ -2,6 +2,7 @@ import sys
 from os import name as os_name
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
+from selenium.common.exceptions import NoSuchElementException
 from time import sleep, localtime, strftime
 from base64 import b64decode
 from pyvirtualdisplay import Display
@@ -31,11 +32,17 @@ print("Opening the web")
 print(strftime("%m/%d/%Y, %H:%M:%S", localtime()))
 driver.get('https://www.minijuegos.com/')
 
-sleep(44)
+sleep(46)
 print("Logging stage")
 # driver.find_element_by_class_name('banner_accept--X').click()
-log = driver.find_element_by_id("user-widget-no-logged")
-log.click()
+try:
+    log = driver.find_element_by_id("user-widget-no-logged")
+    log.click()
+except NoSuchElementException:
+    print("Element not found. Waiting")
+    sleep(30)
+    log = driver.find_element_by_id("user-widget-no-logged")
+    log.click()
 
 sleep(2)
 print("Inserting logging values")
