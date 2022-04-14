@@ -32,7 +32,13 @@ print("Opening the web")
 print(strftime("%m/%d/%Y, %H:%M:%S", localtime()))
 driver.get('https://www.minijuegos.com/')
 
-sleep(46)
+sleep(36)
+
+print("Handle cookie banner")
+cookie = driver.find_element_by_class_name("css-52n1sd")
+cookie.click()
+sleep(6)
+
 print("Logging stage")
 # driver.find_element_by_class_name('banner_accept--X').click()
 try:
