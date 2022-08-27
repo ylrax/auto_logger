@@ -7,6 +7,7 @@ jobs:
   build-push-to-gcr:
     name: Build and Push to GCP
     runs-on: ubuntu-latest
+    environment: auto_logger
     env:
       IMAGE_NAME: autologger
       PROJECT_ID: autologger
@@ -17,7 +18,7 @@ jobs:
     - id: 'auth'
       uses: 'google-github-actions/auth@v0'
       with:
-        credentials_json: '${{ secrets.SERVICE_ACCOUNT_KEY }}'
+        credentials_json: '${{ secrets.GCP_CREDENTIALS }}'
 
     - uses: google-github-actions/setup-gcloud@v0
       with:
