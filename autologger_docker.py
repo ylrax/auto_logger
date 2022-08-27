@@ -47,6 +47,10 @@ except NoSuchElementException:
 
 sleep(2)
 print("Inserting logging values")
+
+if sys.argv[1] == 'dXNlcm5hbWU=':
+    print("Using default user (not real)")
+
 driver.find_element(by=By.XPATH, value="//*[@id='login-uid']").send_keys(b64decode(sys.argv[1].encode('ascii')).decode('utf-8')) # 'dXNlcm5hbWU='
 driver.find_element(by=By.XPATH, value="//*[@id='login-pwd']").send_keys(b64decode(sys.argv[2].encode('ascii')).decode('utf-8')) # 'MTIzNDU2'
 driver.find_element(by=By.XPATH, value="//*[@id='login-pwd']").send_keys(webdriver.common.keys.Keys.ENTER)
