@@ -12,4 +12,4 @@ RUN python3 -m pip install selenium==4.1.3
 RUN wget https://raw.githubusercontent.com/ylrax/auto_logger/master/autologger_docker.py
 #COPY . .
 
-RUN python3 ./autologger_docker.py &user &pass
+RUN python3 ./autologger_docker.py $user $pass
