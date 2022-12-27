@@ -1,13 +1,21 @@
 import sys
+from os import environ
+from base64 import b64decode
+from time import sleep, localtime, strftime
 from selenium import webdriver
 from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.common.by import By
-from time import sleep, localtime, strftime
-from base64 import b64decode
+
 
 if len(sys.argv) == 1:
-    print("No argument passed!!")
-    sys.exit()
+    print("No default argument passed!!")
+    print("Using the environment variables")
+    param_1 = environ.get("USER")
+    param_2 = environ.get("PASS")
+
+else:
+    param_1 = sys.argv[1]
+    param_2 = sys.argv[2]
 
 chrome_options = webdriver.ChromeOptions()
 chrome_options.add_argument('--no-sandbox')
@@ -17,7 +25,7 @@ chrome_options.add_argument('--headless')
 chrome_options.add_argument('--no-sandbox')
 chrome_options.add_argument('--profile-directory=Default')
 chrome_options.add_argument("--incognito")
-chrome_options.add_argument('--disable-dev-shm-usage')    
+chrome_options.add_argument('--disable-dev-shm-usage')
 
 driver = webdriver.Chrome(options=chrome_options)
 
@@ -51,8 +59,8 @@ print("Inserting logging values")
 if sys.argv[1] == 'dXNlcm5hbWU=':
     print("Using default user (not real)")
 
-driver.find_element(by=By.XPATH, value="//*[@id='login-uid']").send_keys(b64decode(sys.argv[1].encode('ascii')).decode('utf-8')) # 'dXNlcm5hbWU='
-driver.find_element(by=By.XPATH, value="//*[@id='login-pwd']").send_keys(b64decode(sys.argv[2].encode('ascii')).decode('utf-8')) # 'MTIzNDU2'
+driver.find_element(by=By.XPATH, value="//*[@id='login-uid']").send_keys(b64decode(param_1.encode('ascii')).decode('utf-8')) # 'dXNlcm5hbWU='
+driver.find_element(by=By.XPATH, value="//*[@id='login-pwd']").send_keys(b64decode(param_2.encode('ascii')).decode('utf-8')) # 'MTIzNDU2'
 driver.find_element(by=By.XPATH, value="//*[@id='login-pwd']").send_keys(webdriver.common.keys.Keys.ENTER)
 
 

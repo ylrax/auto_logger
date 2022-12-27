@@ -1,5 +1,5 @@
 import sys
-from os import name as os_name
+from os import environ, name as os_name
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.common.exceptions import NoSuchElementException
@@ -8,8 +8,14 @@ from base64 import b64decode
 from pyvirtualdisplay import Display
 
 if len(sys.argv) == 1:
-    print("No argument passed!!")
-    sys.exit()
+    print("No default argument passed!!")
+    print("Using the environment variables")
+    param_1 = environ.get("USER")
+    param_2 = environ.get("PASS")
+
+else:
+    param_1 = sys.argv[1]
+    param_2 = sys.argv[2]
 
 chrome_options = webdriver.ChromeOptions()
 chrome_options.add_argument('--disable-extensions')
@@ -52,8 +58,8 @@ except NoSuchElementException:
 
 sleep(2)
 print("Inserting logging values")
-driver.find_element_by_xpath("//*[@id='login-uid']").send_keys(b64decode(sys.argv[1].encode('ascii')).decode('utf-8')) # 'dXNlcm5hbWU='
-driver.find_element_by_xpath("//*[@id='login-pwd']").send_keys(b64decode(sys.argv[2].encode('ascii')).decode('utf-8')) # 'MTIzNDU2'
+driver.find_element_by_xpath("//*[@id='login-uid']").send_keys(b64decode(param_1.encode('ascii')).decode('utf-8')) # 'dXNlcm5hbWU='
+driver.find_element_by_xpath("//*[@id='login-pwd']").send_keys(b64decode(param_2.encode('ascii')).decode('utf-8')) # 'MTIzNDU2'
 driver.find_element_by_xpath("//*[@id='login-pwd']").send_keys(webdriver.common.keys.Keys.ENTER) # webdriver.common.keys.Keys.ENTER?
 
 print("Inside of profile?!!!")
