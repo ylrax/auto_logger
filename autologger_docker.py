@@ -10,8 +10,8 @@ from selenium.webdriver.common.by import By
 if len(sys.argv) == 1:
     print("No default argument passed!!")
     print("Using the environment variables")
-    param_1 = environ.get("USER")
-    param_2 = environ.get("PASS")
+    param_1 = environ.get("USER", 'dXNlcm5hbWU=')
+    param_2 = environ.get("PASS", 'MTIzNDU2')
 
 else:
     param_1 = sys.argv[1]
