@@ -56,7 +56,7 @@ except NoSuchElementException:
 sleep(2)
 print("Inserting logging values")
 
-if sys.argv[1] == 'dXNlcm5hbWU=':
+if param_1 == 'dXNlcm5hbWU=':
     print("Using default user (not real)")
 
 driver.find_element(by=By.XPATH, value="//*[@id='login-uid']").send_keys(b64decode(param_1.encode('ascii')).decode('utf-8')) # 'dXNlcm5hbWU='
