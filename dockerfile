@@ -13,4 +13,4 @@ RUN wget https://raw.githubusercontent.com/ylrax/auto_logger/master/autologger_d
 #COPY . .
 
 #RUN python3 ./autologger_docker.py $user $pass
-RUN python3 ./autologger_docker.py
+CMD python3 ./autologger_docker.py
