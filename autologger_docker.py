@@ -37,7 +37,7 @@ driver.get('https://www.minijuegos.com/')
 sleep(9)
 
 print("Handle cookie banner...")
-cookie = driver.find_element(by=By.XPATH, value='//*[@id="qc-cmp2-ui"]/div[3]/div/button[2]')
+cookie = driver.find_element(by=By.XPATH, value='//*[@id="qc-cmp2-ui"]/div[2]/div/button[2]')
 cookie.click()
 sleep(6)
 #screenshot = driver.save_screenshot('entered.png')
