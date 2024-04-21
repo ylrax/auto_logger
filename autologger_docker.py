@@ -30,11 +30,10 @@ chrome_options.add_argument('--disable-dev-shm-usage')
 driver = webdriver.Chrome(options=chrome_options)
 
 
-# driver.add_argument(“ — incognito”)
 print("Opening the web: ", strftime("%m/%d/%Y, %H:%M:%S", localtime()))
 driver.get('https://www.minijuegos.com/')
 
-sleep(9)
+sleep(10)
 
 print("Handle cookie banner...")
 cookie = driver.find_element(by=By.XPATH, value='//*[@id="qc-cmp2-ui"]/div[2]/div/button[2]')
