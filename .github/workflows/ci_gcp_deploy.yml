@@ -6,7 +6,7 @@ on:
 jobs:
   build-push-to-gcr:
     name: Build and Push to GCP
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-24.04
     environment: auto_logger
     env:
       IMAGE_NAME: autologger
