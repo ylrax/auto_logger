@@ -33,7 +33,7 @@ driver = webdriver.Chrome(options=chrome_options)
 print("Opening the web: ", strftime("%m/%d/%Y, %H:%M:%S", localtime()))
 driver.get('https://www.minijuegos.com/')
 
-sleep(10)
+sleep(12)
 
 print("Handle cookie banner...")
 cookie = driver.find_element(by=By.XPATH, value='//*[@id="qc-cmp2-ui"]/div[2]/div/button[2]')
