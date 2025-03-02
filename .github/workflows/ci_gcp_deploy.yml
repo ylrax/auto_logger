@@ -6,7 +6,7 @@ on:
 jobs:
   build-push-to-gcr:
     name: Build and Push to GCP
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-20.04
     environment: auto_logger
     env:
       IMAGE_NAME: autologger
@@ -37,7 +37,7 @@ jobs:
     - name: Push Docker Image to Artifact Registry
       env:
         #GIT_TAG: ${{ steps.increment-git-tag.outputs.git-tag }}
-        GIT_TAG: v1.1.1
+        GIT_TAG: v1.2.0
       run: |-
         docker tag $IMAGE_NAME:latest europe-southwest1-docker.pkg.dev/$PROJECT_ID/images-rep/$IMAGE_NAME:latest
         docker tag $IMAGE_NAME:latest europe-southwest1-docker.pkg.dev/$PROJECT_ID/images-rep/$IMAGE_NAME:$GIT_TAG
