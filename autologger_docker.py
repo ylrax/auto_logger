@@ -37,13 +37,18 @@ sleep(10)
 
 print("Handle cookie banner...")
 try:
-    print("First option")
+    print("  First option")
     cookie = driver.find_element(by=By.XPATH, value='//*[@id="qc-cmp2-ui"]/div[3]/div/button[2]')
     cookie.click()
 except NoSuchElementException:
-    print("Second option")
-    cookie = driver.find_element(by=By.XPATH, value='//*[@id="qc-cmp2-ui"]/div[2]/div/button[2]')
-    cookie.click()
+    try:
+        print("  Second option")
+        cookie = driver.find_element(by=By.XPATH, value='//*[@id="qc-cmp2-ui"]/div[2]/div/button[2]')
+        cookie.click()
+    except NoSuchElementException:
+        print("  No Cookie option?")
+
+
 sleep(6)
 #screenshot = driver.save_screenshot('entered.png')
 
