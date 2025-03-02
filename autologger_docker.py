@@ -10,6 +10,7 @@ from selenium.webdriver.common.by import By
 if len(sys.argv) == 1:
     print("No default argument passed!!")
     print("Using the environment variables")
+    print(sys.version)
     param_1 = environ.get("USER", 'dXNlcm5hbWU=')
     param_2 = environ.get("PASS", 'MTIzNDU2')
 
@@ -46,10 +47,9 @@ except NoSuchElementException:
         cookie = driver.find_element(by=By.XPATH, value='//*[@id="qc-cmp2-ui"]/div[2]/div/button[2]')
         cookie.click()
     except NoSuchElementException:
-        print("  No Cookie option?")
-        cookie = driver.find_element(by=By.XPATH, value='/html/body/div[1]/div/div/div/div[2]/div/button[2]')
+        print("  No XPATH option?")
+        cookie = driver.find_element(by=By.CLASS_NAME, value='css-52n1sd')
         cookie.click()
-
 
 sleep(6)
 #screenshot = driver.save_screenshot('entered.png')
