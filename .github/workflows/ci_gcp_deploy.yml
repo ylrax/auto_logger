@@ -37,7 +37,7 @@ jobs:
     - name: Push Docker Image to Artifact Registry
       env:
         #GIT_TAG: ${{ steps.increment-git-tag.outputs.git-tag }}
-        GIT_TAG: v1.1.0
+        GIT_TAG: v1.1.1
       run: |-
         docker tag $IMAGE_NAME:latest europe-southwest1-docker.pkg.dev/$PROJECT_ID/images-rep/$IMAGE_NAME:latest
         docker tag $IMAGE_NAME:latest europe-southwest1-docker.pkg.dev/$PROJECT_ID/images-rep/$IMAGE_NAME:$GIT_TAG

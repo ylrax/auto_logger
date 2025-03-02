@@ -5,11 +5,15 @@ FROM selenium/standalone-chrome
 
 USER root
 RUN apt-get update && apt-get install python3-setuptools -y
+# for the future me. perhaps better use pipx
 RUN apt-get update && apt-get install python3-pip -y
-RUN pip3 install selenium==4.1.3 --break-system-package
+
 
 RUN wget https://raw.githubusercontent.com/ylrax/auto_logger/master/autologger_docker.py
+RUN wget https://raw.githubusercontent.com/ylrax/auto_logger/master/requirements.txt
+
+RUN pip3 install -r requirements.txt
 #COPY . .
 
 #RUN python3 ./autologger_docker.py $user $pass
-CMD python3 ./autologger_docker.py
+CMD ["python3", "./autologger_docker.py"]
