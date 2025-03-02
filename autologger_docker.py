@@ -33,7 +33,7 @@ driver = webdriver.Chrome(options=chrome_options)
 print("Opening the web: ", strftime("%m/%d/%Y, %H:%M:%S", localtime()))
 driver.get('https://www.minijuegos.com/')
 
-sleep(10)
+sleep(25)
 
 print("Handle cookie banner...")
 try:
@@ -47,6 +47,8 @@ except NoSuchElementException:
         cookie.click()
     except NoSuchElementException:
         print("  No Cookie option?")
+        cookie = driver.find_element(by=By.XPATH, value='/html/body/div[1]/div/div/div/div[2]/div/button[2]')
+        cookie.click()
 
 
 sleep(6)
