@@ -34,20 +34,38 @@ driver = webdriver.Chrome(options=chrome_options)
 print("Opening the web: ", strftime("%m/%d/%Y, %H:%M:%S", localtime()))
 driver.get('https://www.minijuegos.com/')
 
-sleep(25)
+sleep(20)
+
+def check_exists_by_xpath(xpath, source=By.XPATH):
+    try:
+        driver.find_element(by=source, value=xpath)
+    except NoSuchElementException:
+        return False
+    return True
+
+print("Check all cookie existence")
+print("General banner: ", check_exists_by_xpath('//*[@id="qc-cmp2-ui"]'))
+print("General banner: ", check_exists_by_xpath('qc-cmp2-ui', By.ID))
+print("Button banner: ", check_exists_by_xpath('//*[@id="qc-cmp2-ui"]/div[2]/div/button[2]'))
+print("Botton banner: ", check_exists_by_xpath(' css-52n1sd', By.CSS_SELECTOR))
+print("Botton banner: ", check_exists_by_xpath(' css-52n1sd', By.CLASS_NAME))
+
+sleep(4)
 
 print("Handle cookie banner...")
 try:
-    print("  First option")
+    print("***  First option")
     cookie = driver.find_element(by=By.XPATH, value='//*[@id="qc-cmp2-ui"]/div[3]/div/button[2]')
     cookie.click()
 except NoSuchElementException:
     try:
-        print("  Second option")
+        print("***  Second option")
+        sleep(2)
         cookie = driver.find_element(by=By.XPATH, value='//*[@id="qc-cmp2-ui"]/div[2]/div/button[2]')
         cookie.click()
     except NoSuchElementException:
-        print("  No XPATH option?")
+        print("***  No XPATH option?")
+        sleep(2)
         cookie = driver.find_element(by=By.CLASS_NAME, value='css-52n1sd')
         cookie.click()
 
