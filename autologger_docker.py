@@ -49,13 +49,16 @@ print("General banner: ", check_exists_by_xpath('qc-cmp2-ui', By.ID))
 print("Button banner: ", check_exists_by_xpath('//*[@id="qc-cmp2-ui"]/div[2]/div/button[2]'))
 print("Botton banner: ", check_exists_by_xpath(' css-52n1sd', By.CSS_SELECTOR))
 print("Botton banner: ", check_exists_by_xpath(' css-52n1sd', By.CLASS_NAME))
+print("log banner: ", check_exists_by_xpath("user-widget-no-logged", By.ID))
+print("log2 banner: ", check_exists_by_xpath('//*[@id="user-widget-no-logged"]/li/span'))
+print("log2 banner: ", check_exists_by_xpath('//*[@id="user-widget-no-logged"]'))
 
 sleep(4)
 # https://stackoverflow.com/questions/73199578/issue-when-running-python-script-with-selenium-over-gcp-cloud-run
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 
-WebDriverWait(driver, 60).until(EC.presence_of_element_located((By.XPATH, '//*[@id="qc-cmp2-ui"]')))
+WebDriverWait(driver, 120).until(EC.presence_of_element_located((By.XPATH, '//*[@id="qc-cmp2-ui"]')))
 
 print("Handle cookie banner...")
 try:
