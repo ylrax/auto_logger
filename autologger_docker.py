@@ -22,7 +22,7 @@ chrome_options = webdriver.ChromeOptions()
 chrome_options.add_argument('--no-sandbox')
 chrome_options.add_argument('--window-size=1920,1080')
 chrome_options.add_argument('--disable-extensions')
-chrome_options.add_argument('--headless')
+#chrome_options.add_argument('--headless')
 chrome_options.add_argument('--no-sandbox')
 chrome_options.add_argument('--profile-directory=Default')
 chrome_options.add_argument("--incognito")
@@ -51,14 +51,14 @@ print("Botton banner: ", check_exists_by_xpath(' css-52n1sd', By.CSS_SELECTOR))
 print("Botton banner: ", check_exists_by_xpath(' css-52n1sd', By.CLASS_NAME))
 print("log banner: ", check_exists_by_xpath("user-widget-no-logged", By.ID))
 print("log2 banner: ", check_exists_by_xpath('//*[@id="user-widget-no-logged"]/li/span'))
-print("log2 banner: ", check_exists_by_xpath('//*[@id="user-widget-no-logged"]'))
+print("log3 banner: ", check_exists_by_xpath('//*[@id="user-widget-no-logged"]'))
 
 sleep(4)
 # https://stackoverflow.com/questions/73199578/issue-when-running-python-script-with-selenium-over-gcp-cloud-run
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 
-WebDriverWait(driver, 120).until(EC.presence_of_element_located((By.XPATH, '//*[@id="qc-cmp2-ui"]')))
+WebDriverWait(driver, 140).until(EC.presence_of_element_located((By.XPATH, '//*[@id="qc-cmp2-ui"]')))
 
 print("Handle cookie banner...")
 try:
