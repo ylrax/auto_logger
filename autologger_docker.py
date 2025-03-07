@@ -60,7 +60,7 @@ sleep(4)
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 
-WebDriverWait(driver, 140).until(EC.presence_of_element_located((By.XPATH, '//*[@id="qc-cmp2-ui"]')))
+#WebDriverWait(driver, 140).until(EC.presence_of_element_located((By.XPATH, '//*[@id="qc-cmp2-ui"]')))
 
 print("Handle cookie banner...")
 try:
@@ -76,8 +76,7 @@ except NoSuchElementException:
     except NoSuchElementException:
         print("***  No XPATH option?")
         sleep(2)
-        cookie = driver.find_element(by=By.CLASS_NAME, value='css-52n1sd')
-        cookie.click()
+
 
 sleep(6)
 #screenshot = driver.save_screenshot('entered.png')
