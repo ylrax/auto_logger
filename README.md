@@ -1,5 +1,5 @@
 # auto_logger
-Selenium web autologger for minijuegos with python 3 and selenium
+Selenium web autologger for minijuegos with python 3 and selenium, with the undetected-chromedriver library
 
 ### Requirements:
 
