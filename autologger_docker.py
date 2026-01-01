@@ -68,7 +68,7 @@ print("General banner: ", check_exists_by_xpath('//*[@id="qc-cmp2-ui"]'))
 #print("log2 banner: ", check_exists_by_xpath('//*[@id="user-widget-no-logged"]/li/span'))
 #print("log3 banner: ", check_exists_by_xpath('//*[@id="user-widget-no-logged"]'))
 
-sleep(4)
+sleep(9)
 # https://stackoverflow.com/questions/73199578/issue-when-running-python-script-with-selenium-over-gcp-cloud-run
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
@@ -83,11 +83,11 @@ try:
 except NoSuchElementException:
     try:
         print("***  Second option")
-        sleep(2)
+        sleep(4)
         cookie = driver.find_element(by=By.XPATH, value='//*[@id="qc-cmp2-ui"]/div[2]/div/button[2]')
         cookie.click()
     except NoSuchElementException:
-        print("***  No XPATH option?")
+        print("***  No XPATH option or cookie banner?")
         sleep(2)
 
 
@@ -96,9 +96,14 @@ sleep(6)
 
 # Update to pass cloudflare screen
 print("Press the minijuegos icon to reload")
-icon = driver.find_element(By.CLASS_NAME, "left-content-wrapper")
-#driver.execute_script("arguments[0].click();", icon)
-icon.click()
+try:
+    print("***  option 1")
+    icon = driver.find_element(By.CLASS_NAME, "left-content-wrapper")
+    #driver.execute_script("arguments[0].click();", icon)
+    icon.click()
+except NoSuchElementException:
+    print("***  icon viewed?")
+    sleep(2)
 
 sleep(16)
 
