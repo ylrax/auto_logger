@@ -6,6 +6,7 @@ from selenium import webdriver
 from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.common.by import By
 import undetected_chromedriver as uc
+import setuptools.dist
 
 
 if len(sys.argv) == 1:
