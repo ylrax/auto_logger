@@ -5,6 +5,7 @@ from time import sleep, localtime, strftime
 from selenium import webdriver
 from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.common.by import By
+import undetected_chromedriver as uc
 
 
 if len(sys.argv) == 1:
@@ -18,7 +19,7 @@ else:
     param_1 = sys.argv[1]
     param_2 = sys.argv[2]
 
-chrome_options = webdriver.ChromeOptions()
+chrome_options = uc.ChromeOptions()
 chrome_options.add_argument('--no-sandbox')
 chrome_options.add_argument('--window-size=1920,1080')
 chrome_options.add_argument('--disable-extensions')
@@ -29,9 +30,20 @@ chrome_options.add_argument('--headless')
 chrome_options.add_argument('--profile-directory=Default')
 chrome_options.add_argument("--incognito")
 chrome_options.add_argument('--disable-dev-shm-usage')
+chrome_options.add_experimental_option("excludeSwitches", ["enable-automation"])
+chrome_options.add_experimental_option('useAutomationExtension', False)
+chrome_options.add_argument("--disable-blink-features=AutomationControlled")
 
 driver = webdriver.Chrome(options=chrome_options)
 
+# Reescribir navigator.webdriver antes de cargar páginas
+driver.execute_cdp_cmd("Page.addScriptToEvaluateOnNewDocument", {
+    "source": """
+        Object.defineProperty(navigator, 'webdriver', {
+            get: () => undefined
+        });
+    """
+})
 
 print("Opening the web: ", strftime("%m/%d/%Y, %H:%M:%S", localtime()))
 driver.get('https://www.minijuegos.com/')
@@ -80,6 +92,14 @@ except NoSuchElementException:
 
 sleep(6)
 #screenshot = driver.save_screenshot('entered.png')
+
+# Update to pass cloudflare screen
+print("Press the minijuegos icon to reload")
+icon = driver.find_element(By.CLASS_NAME, "left-content-wrapper")
+#driver.execute_script("arguments[0].click();", icon)
+icon.click()
+
+sleep(16)
 
 print("Logging stage...")
 # driver.find_element_by_class_name('banner_accept--X').click()
