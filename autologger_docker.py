@@ -60,8 +60,8 @@ def check_exists_by_xpath(xpath, source=By.XPATH):
 
 print("Check all cookie existence")
 print("General banner: ", check_exists_by_xpath('//*[@id="qc-cmp2-ui"]'))
-print("General banner: ", check_exists_by_xpath('qc-cmp2-ui', By.ID))
-print("Button banner: ", check_exists_by_xpath('//*[@id="qc-cmp2-ui"]/div[2]/div/button[2]'))
+#print("General banner: ", check_exists_by_xpath('qc-cmp2-ui', By.ID))
+#print("Button banner: ", check_exists_by_xpath('//*[@id="qc-cmp2-ui"]/div[2]/div/button[2]'))
 #print("Botton banner: ", check_exists_by_xpath(' css-52n1sd', By.CSS_SELECTOR))
 #print("Botton banner: ", check_exists_by_xpath(' css-52n1sd', By.CLASS_NAME))
 #print("log banner: ", check_exists_by_xpath("user-widget-no-logged", By.ID))
