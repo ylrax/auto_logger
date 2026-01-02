@@ -20,6 +20,8 @@ else:
     param_1 = sys.argv[1]
     param_2 = sys.argv[2]
 
+print("Ejecutando con:", sys.version)
+
 chrome_options = uc.ChromeOptions()
 chrome_options.add_argument('--no-sandbox')
 chrome_options.add_argument('--window-size=1920,1080')
