@@ -70,8 +70,8 @@ print("General banner: ", check_exists_by_xpath('//*[@id="qc-cmp2-ui"]'))
 
 sleep(9)
 # https://stackoverflow.com/questions/73199578/issue-when-running-python-script-with-selenium-over-gcp-cloud-run
-from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.support.ui import WebDriverWait
+#from selenium.webdriver.support import expected_conditions as EC
+#from selenium.webdriver.support.ui import WebDriverWait
 
 #WebDriverWait(driver, 140).until(EC.presence_of_element_located((By.XPATH, '//*[@id="qc-cmp2-ui"]')))
 
@@ -105,7 +105,7 @@ except NoSuchElementException:
     print("***  icon viewed?")
     sleep(2)
 
-sleep(16)
+sleep(19)
 
 print("Logging stage...")
 # driver.find_element_by_class_name('banner_accept--X').click()
@@ -113,12 +113,19 @@ try:
     log = driver.find_element(by=By.ID, value="user-widget-no-logged")
     log.click()
 except NoSuchElementException:
-    print("Element not found. Waiting")
-    sleep(30)
-    log = driver.find_element(by=By.ID, value="user-widget-no-logged")
-    log.click()
+    try:
+        print("Element not found. Waiting")
+        sleep(30)
+        log = driver.find_element(by=By.ID, value="user-widget-no-logged")
+        log.click()
+    except NoSuchElementException:
+        print("Again not found, retry...")
+        sleep(9)
+        log_button = driver.find_element(By.CSS_SELECTOR, "#user-widget-no-logged .js-login")
+        log_button.click()
 
-sleep(2)
+
+sleep(4)
 print("Inserting logging values")
 
 if param_1 == 'dXNlcm5hbWU=':
