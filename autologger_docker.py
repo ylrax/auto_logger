@@ -8,6 +8,10 @@ from selenium.webdriver.common.by import By
 import undetected_chromedriver as uc
 import setuptools.dist
 
+from pyvirtualdisplay import Display
+
+
+
 
 if len(sys.argv) == 1:
     print("No default argument passed!!")
@@ -26,18 +30,23 @@ chrome_options = uc.ChromeOptions()
 chrome_options.add_argument('--no-sandbox')
 chrome_options.add_argument('--window-size=1920,1080')
 chrome_options.add_argument('--disable-extensions')
-chrome_options.add_argument('--headless')
+#chrome_options.add_argument('--headless')
 #chrome_options.add_argument("--start-maximized")
 #chrome_options.add_argument("--ignore-certificate-errors")
 #chrome_options.add_argument("--disable-popup-blocking")
-chrome_options.add_argument('--profile-directory=Default')
+#chrome_options.add_argument('--profile-directory=Default')
 chrome_options.add_argument("--incognito")
 chrome_options.add_argument('--disable-dev-shm-usage')
-chrome_options.add_experimental_option("excludeSwitches", ["enable-automation"])
-chrome_options.add_experimental_option('useAutomationExtension', False)
+#chrome_options.add_experimental_option("excludeSwitches", ["enable-automation"])
+#chrome_options.add_experimental_option('useAutomationExtension', False)
 chrome_options.add_argument("--disable-blink-features=AutomationControlled")
 
-driver = webdriver.Chrome(options=chrome_options)
+
+display = Display(visible=False, size=(1920, 1080))
+display.start()   # crea el DISPLAY antes de lanzar Chrome
+driver = uc.Chrome(options=chrome_options,
+                    version_main=149,   
+                    use_subprocess=True,)
 
 # Reescribir navigator.webdriver antes de cargar páginas
 driver.execute_cdp_cmd("Page.addScriptToEvaluateOnNewDocument", {
@@ -94,7 +103,7 @@ except NoSuchElementException:
 
 
 sleep(6)
-#screenshot = driver.save_screenshot('entered.png')
+screenshot = driver.save_screenshot('entered.png')
 
 # Update to pass cloudflare screen
 print("Press the minijuegos icon to reload")
@@ -108,6 +117,7 @@ except NoSuchElementException:
     sleep(2)
 
 sleep(19)
+screenshot = driver.save_screenshot('entered2.png')
 
 print("Logging stage...")
 # driver.find_element_by_class_name('banner_accept--X').click()
